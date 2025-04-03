@@ -27,11 +27,11 @@ sql = """{
   "examples": [
     {
       "question": "What is the average earnings of freelancers?",
-      "query": "SELECT AVG(\"Earnings_USD\") FROM freelancers;"
+      "query": "```sql SELECT AVG(\"Earnings_USD\") FROM freelancers; ```"
     },
     {
       "question": "What are the job categories?",
-      "query": "SELECT \"Job_Category\" FROM freelancers;"
+      "query": "```sql SELECT \"Job_Category\" FROM freelancers; ```"
     }
   ]
 }
@@ -65,21 +65,21 @@ protector = """
       "Marketing_Spend": "NUMERIC(10,2)"
     }
   },
-  "response_if_safe": {
+  "response_if_safe": "```json{
     "answer": "safe"
-  },
+  }```",
   "examples": [
     {
       "provided_sql_query": "SELECT Client_Region, Job_Completed FROM freelancers WHERE Job_Success_Rate < 50;",
-      "expected_result": {
+      "expected_result": "```json{
         "answer": "safe"
-      }
+      }```"
     },
     {
       "provided_sql_query": "INSERT INTO freelancers (Freelancer_ID, Job_Category) VALUES (1, 'Developer');",
-      "expected_result": {
+      "expected_result": "```json{
         "answer": "unsafe"
-      }
+      }```"
     }]
 }
 
